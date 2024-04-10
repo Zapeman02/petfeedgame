@@ -1,0 +1,147 @@
+<html><head><!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-FLZH6N9QNV&amp;l=dataLayer&amp;cx=c"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-58936387-12"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-58936387-12');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<script>
+  // Save the current console log function in case we need it.
+  const _log = console.log;
+  const _debug = console.debug;
+  const _info = console.info;
+  const _warn = console.warn;
+  const _error = console.error;
+  // Override the console
+  console.log = function(...rest) {
+    window.parent.postMessage(
+      {
+        source: 'iframe-' + window.name,
+        message: rest,
+        method: 'log'
+      },
+      '*'
+    );
+    _log.apply(console, arguments);
+  };
+
+  console.debug = function(...rest) {
+    window.parent.postMessage(
+      {
+        source: 'iframe-' + window.name,
+        message: rest,
+        method: 'debug'
+      },
+      '*'
+    );
+    _debug.apply(console, arguments);
+  };
+
+  console.info = function(...rest) {
+    window.parent.postMessage(
+      {
+        source: 'iframe-' + window.name,
+        message: rest,
+        method: 'info'
+      },
+      '*'
+    );
+    _info.apply(console, arguments);
+  };
+
+  console.warn = function(...rest) {
+    window.parent.postMessage(
+      {
+        source: 'iframe-' + window.name,
+        message: rest,
+        method: 'warn'
+      },
+      '*'
+    );
+    _warn.apply(console, arguments);
+  };
+
+  console.error = function(...rest) {
+    window.parent.postMessage(
+      {
+        source: 'iframe-' + window.name,
+        message: rest,
+        method: 'error'
+      },
+      '*'
+    );
+    _error.apply(console, arguments);
+  };
+</script>
+
+    
+<script>
+    window.onerror = function(msg) {
+        window.parent.postMessage(
+            {
+                source: 'iframe-' + window.name,
+                message: [msg],
+                method: 'error'
+            },
+            '*'
+            );
+    };
+</script>
+
+    
+<script>
+    window.addEventListener('load', (event) => {
+    window.parent.postMessage({
+        source: 'iframe-navigation-' + window.name,
+        message: document.location.href,
+    }, '*');
+    })
+</script>
+
+    
+<script>
+    window.onload = function() {
+        window.parent.postMessage(
+            {
+              source: 'iframe-' + window.name,
+              windowHeight: document.getElementsByTagName('html')[0].getBoundingClientRect().height,
+            },
+            '*'
+          );
+    };
+</script>
+
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Pixel Paws</h1>
+    <div class="pet-container">
+      <div class="pet selected" id="pet1" onclick="selectPet(1)" style="opacity: 0.5;">
+        <div class="emoji">🐱</div>
+        <p>Saturation Level: <span id="hunger1">0</span>%</p>
+        <p id="message1">Pet ran away</p>
+      </div>
+      <div class="pet" id="pet2" onclick="selectPet(2)" style="opacity: 0.5;">
+        <div class="emoji">🐶</div>
+        <p>Saturation Level: <span id="hunger2">0</span>%</p>
+        <p id="message2">Pet ran away</p>
+      </div>
+    </div>
+    <div class="treat-container">
+      <div class="treat-wrapper">
+        <div class="emoji treat" onclick="feedPet(1)" id="treat1">🍪
+        </div>
+      </div>
+      <div class="treat-wrapper">
+        <div class="emoji treat" onclick="feedPet(5)" id="treat2">🍰
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  
+</body></html>
